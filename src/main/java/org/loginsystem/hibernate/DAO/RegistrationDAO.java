@@ -48,57 +48,60 @@ public class RegistrationDAO {
 		public void addUser(UserRegistration registration) {
 			session.getTransaction().begin();
 			
-			//Address
-			address.setAddressLine1("H");
-			address.setAddressLine2("g");
-			address.setStreet1("ab");
-			address.setStreet2("xyz");
-			address.setDistrict("ghazipur");
-			address.setState("Up");
-			address.setPostalCode(123);
-			address.setCountry("India");
-			
-			//Stream
-			stream.setName("12");
-			streamList.add(stream);
-			
-			//Education
-			education.setCollegeName("LPU");
-			education.setPercentage(78);
-			education.setStream(streamList);
-			educationList.add(education);
-			
-			//YearOfExperiance
-			yearOfExperiance.setStartDate("12/12/12");
-			yearOfExperiance.setEndDate("14/12/20");
-			
-			//Experiance
-			experiance.setName("kk");
-			experiance.setPosition("developer");
-			experiance.setYearOfExperiance(yearOfExperiance);
-			experianceList.add(experiance);
-			
-			//Project
-			project.setName("star");
-			project.setDescription("hello world");
-			project.setLink("hello link");
-			projectList.add(project);
-			
-			//Skill 
-			skill.setName("Java");
-			skill.setProficiency("Intermediate");
-			skillList.add(skill);
 		
-			
-			userregistration.setName("username");
-			userregistration.setEmail("abc@abc.com");
-			userregistration.setAddress(address);
-			userregistration.setExtraCurricular("ExtraCurricular");
-			userregistration.setAbout("about");
-			userregistration.setSkill(skillList);
-			userregistration.setExperiance(experianceList);
-			userregistration.setEducation(educationList);
-			userregistration.setProject(projectList);
+		  address.setAddressLine1(registration.getAddress().getAddressLine1()); 
+		  address.setAddressLine2(registration.getAddress().getAddressLine2());
+		  address.setStreet1(registration.getAddress().getStreet1()); 
+		  address.setStreet2(registration.getAddress().getStreet2());
+		  address.setDistrict(registration.getAddress().getDistrict());
+		  address.setState(registration.getAddress().getState());
+		  address.setPostalCode(registration.getAddress().getPostalCode());
+		  address.setCountry(registration.getAddress().getCountry());
+		  
+		  
+		  //Stream
+		  stream.setName(registration.getEducation().get(registration.getId()).getStream().get(registration.getId()).getName());
+		  streamList.addAll(registration.getEducation().get(registration.getId()).getStream());
+		
+		  //Education 
+		  education.setCollegeName(registration.getEducation().get(registration.getId()).getCollegeName()); 
+		  education.setPercentage(registration.getEducation().get(registration.getId()).getPercentage());
+		  education.setStream(streamList);
+		  educationList.add(education);
+		  
+		  //YearOfExperiance
+		  yearOfExperiance.setStartDate(registration.getExperiance().get(registration.getId()).getYearOfExperiance().getStartDate());
+		  yearOfExperiance.setEndDate(registration.getExperiance().get(registration.getId()).getYearOfExperiance().getEndDate());
+		  
+		  //Experiance 
+		  experiance.setName(registration.getExperiance().get(registration.getId()).getName()); 
+		  experiance.setPosition(registration.getExperiance().get(registration.getId()).getPosition());
+		  experiance.setYearOfExperiance(yearOfExperiance);
+		  experianceList.add(experiance);
+		  
+		  //Project
+		  project.setName(registration.getProject().get(registration.getId()).getName()); 
+		  project.setDescription(registration.getProject().get(registration.getId()).getDescription());
+		  project.setLink(registration.getProject().get(registration.getId()).getLink());
+		  projectList.add(project);
+		  
+		  //Skill 
+		  skill.setName(registration.getSkill().get(registration.getId()).getName()); 
+		  skill.setProficiency(registration.getSkill().get(registration.getId()).getProficiency());
+		  skillList.add(skill);
+		  
+		  
+		  userregistration.setName(registration.getName());
+		  userregistration.setEmail(registration.getEmail());
+		  userregistration.setAddress(address);
+		  userregistration.setExtraCurricular(registration.getExtraCurricular());
+		  userregistration.setAbout(registration.getAbout()); 
+		  userregistration.setSkill(skillList);
+		  userregistration.setExperiance(experianceList);
+		  userregistration.setEducation(educationList);
+		  userregistration.setProject(projectList);
+		 
+		 
 			//userregistration.set
 			session.save(userregistration);
 			session.save(address);
@@ -110,13 +113,14 @@ public class RegistrationDAO {
 			session.save(stream);
 			//session.save(object)
 			session.getTransaction().commit();
-			session.close();
+			
 
 		}			
-		public UserRegistration GetAll(){
-			Session session = factory.getCurrentSession();
+		public UserRegistration GetUserWithId(int id){
+			Session session = factory.openSession();
 			session.getTransaction().begin();
-			UserRegistration userData = (UserRegistration) session.get(UserRegistration.class, 1);
+			UserRegistration userData = (UserRegistration) session.get(UserRegistration.class, id);
+			session.close();
 			return userData;	
 		}
 }

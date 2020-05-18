@@ -1,13 +1,18 @@
 package org.loginsystem.hibernate.entities;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table
@@ -19,15 +24,19 @@ public class UserRegistration {
 	public String name;
 	public String email;
 	public String password;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	public Address address;
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	public List<Education> education;
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	public List<Skill> skill;
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	public List<Experiance> experiance;
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	public List<Project> project;
 	public String extraCurricular;
 	public String about;

@@ -2,12 +2,19 @@ package org.loginsystem.hibernate.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+
 
 @Entity(name="Education")
 @Table(name="Education")
@@ -16,7 +23,8 @@ public class Education {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int id;
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	public List<Stream> stream;
 	public String collegeName;
 	public double percentage;

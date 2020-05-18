@@ -14,9 +14,9 @@ public class RegistrationService {
 		reg.addUser(registration);
 	}
 
-	public UserRegistration getUser() {
+	public UserRegistration getUser(int id) {
 		RegistrationDAO reg = new RegistrationDAO();
-		UserRegistration list =reg.GetAll();	
+		UserRegistration list =reg.GetUserWithId(id);	
 		return list;
 	}
 }

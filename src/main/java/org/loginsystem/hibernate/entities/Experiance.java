@@ -1,6 +1,8 @@
 package org.loginsystem.hibernate.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,7 @@ public class Experiance {
 	public int id;
 	public String name;
 	public String position;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	public YearOfExperiance yearOfExperiance;
 	public int getId() {
 		return id;
