@@ -1,0 +1,63 @@
+{
+    "id": 9,
+    "name": "username",
+    "email": "abc@abc.com",
+    "password": null,
+    "address": {
+        "id": 9,
+        "addressLine1": "H",
+        "addressLine2": "g",
+        "street1": "ab",
+        "street2": "xyz",
+        "state": "Up",
+        "district": "Noida",
+        "country": "India",
+        "postalCode": 123
+    },
+    "education": [
+        {
+            "id": 9,
+            "stream": [
+                {
+                    "id": 10,
+                    "name": "12"
+                },
+                {
+                    "id": 11,
+                    "name": "Satyam2"
+                }
+            ],
+            "collegeName": "LPU",
+            "percentage": 78.0
+        }
+    ],
+    "skill": [
+        {
+            "id": 9,
+            "name": "Java",
+            "proficiency": "Intermediate"
+        }
+    ],
+    "experiance": [
+        {
+            "id": 9,
+            "name": "kk",
+            "position": "developer",
+            "yearOfExperiance": {
+                "id": 9,
+                "startDate": "12/12/12",
+                "endDate": "14/12/20"
+            }
+        }
+    ],
+    "project": [
+        {
+            "id": 9,
+            "name": "star",
+            "description": "hello world",
+            "link": "hello link"
+        }
+    ],
+    "extraCurricular": "ExtraCurricular",
+    "about": "about"
+}
